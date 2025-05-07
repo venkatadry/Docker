@@ -89,10 +89,10 @@ The ENTRYPOINT instruction specifies the command that will always be executed wh
 
 Syntax:
 
-Shell form:
+**Shell form:**
 ENTRYPOINT command param1 param2
 
-Exec form (preferred):
+**Exec form (preferred):**
 ENTRYPOINT ["executable", "param1", "param2"]
 
 
@@ -100,8 +100,10 @@ Example:
 
 Dockerfile
 
-FROM ubuntu:18.04
+```FROM ubuntu:18.04
 ENTRYPOINT ["ping", "-c", "4"]
+```
+
 In this example, the container will always execute ping -c 4 when started
 
 
@@ -110,17 +112,18 @@ The CMD instruction provides default arguments for the ENTRYPOINT command. If ar
 
 Syntax:
 
-Shell form:
+**Shell form:**
 CMD ["param1", "param2"]
 
-Exec form:
+**Exec form:**
 CMD ["executable", "param1", "param2"]
 
 
 Example:
 
 Dockerfile
-FROM ubuntu:18.04
+```FROM ubuntu:18.04
 ENTRYPOINT ["ping", "-c"]
 CMD ["4", "localhost"]
+```
 Here, the container will default to ping -c 4 localhost, but if you run the container with different arguments, like docker run <image> 5 google.com, it will execute ping -c 5 google.com
