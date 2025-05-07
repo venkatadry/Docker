@@ -81,3 +81,46 @@ FROM node:18
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
+
+
+
+**🧭 ENTRYPOINT: Defining the Executable **
+The ENTRYPOINT instruction specifies the command that will always be executed when the container starts. It is ideal for containers that should run a specific application or script.
+
+Syntax:
+
+Shell form:
+ENTRYPOINT command param1 param2
+
+Exec form (preferred):
+ENTRYPOINT ["executable", "param1", "param2"]
+
+
+Example:
+
+Dockerfile
+
+FROM ubuntu:18.04
+ENTRYPOINT ["ping", "-c", "4"]
+In this example, the container will always execute ping -c 4 when started
+
+
+**🧾 CMD: Providing Default Arguments **
+The CMD instruction provides default arguments for the ENTRYPOINT command. If arguments are provided when running the container, they will override the CMD values.
+
+Syntax:
+
+Shell form:
+CMD ["param1", "param2"]
+
+Exec form:
+CMD ["executable", "param1", "param2"]
+
+
+Example:
+
+Dockerfile
+FROM ubuntu:18.04
+ENTRYPOINT ["ping", "-c"]
+CMD ["4", "localhost"]
+Here, the container will default to ping -c 4 localhost, but if you run the container with different arguments, like docker run <image> 5 google.com, it will execute ping -c 5 google.com
