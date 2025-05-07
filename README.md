@@ -121,7 +121,8 @@ CMD ["executable", "param1", "param2"]
 Example:
 
 Dockerfile
-```FROM ubuntu:18.04
+```
+FROM ubuntu:18.04
 ENTRYPOINT ["ping", "-c"]
 CMD ["4", "localhost"]
 ```
