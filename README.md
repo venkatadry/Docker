@@ -84,7 +84,7 @@ RUN npm install
 
 
 
-**🧭 ENTRYPOINT: Defining the Executable **
+***🧭 ENTRYPOINT: Defining the Executable ***
 The ENTRYPOINT instruction specifies the command that will always be executed when the container starts. It is ideal for containers that should run a specific application or script.
 
 Syntax:
