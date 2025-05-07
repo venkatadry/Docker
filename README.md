@@ -158,7 +158,8 @@ This line specifies the base image for your Docker container. By using `node:18`
 
 ### 2. `WORKDIR /app`
 
-Sets the working directory inside the container to `/app`. All subsequent commands will be executed in this directory. If the directory doesn't exist, Docker will create it.([WIREDGORILLA][1], [Medium][2])
+Sets the working directory inside the container to `/app`. All subsequent commands will be executed in this directory. If the directory doesn't exist, Docker will create it.
+If the WORKDIR instruction is not specified in a Dockerfile, the default WORKDIR is the root directory (/)
 
 ### 3. `COPY package*.json ./`
 
@@ -178,9 +179,9 @@ Informs Docker that the container will listen on port 3000 at runtime. While thi
 
 ### 7. `CMD ["node", "index.js"]`
 
-Specifies the command to run when the container starts. In this case, it runs `index.js` using Node.js. This is the entry point of your application.([WIREDGORILLA][1], [Medium][2])
+Specifies the command to run when the container starts. In this case, it runs `index.js` using Node.js. This is the entry point of your application
 
-By structuring your Dockerfile in this manner, you create an efficient and maintainable environment for your Node.js application.([WIREDGORILLA][1])
+By structuring your Dockerfile in this manner, you create an efficient and maintainable environment for your Node.js application.
 
 
 
