@@ -91,26 +91,43 @@ It serves as the blueprint for Docker images.
 
 
 
-***🧭 ENTRYPOINT: Defining the Executable***
-The ENTRYPOINT instruction specifies the command that will always be executed when the container starts. It is ideal for containers that should run a specific application or script.
+***🧭 ENTRYPOINT:***
+In Docker, the `ENTRYPOINT` instruction is used to specify the command that will always be executed when a container starts. Unlike `CMD`, which provides default arguments that can be overridden, `ENTRYPOINT` defines the primary purpose of the container and is not easily overridden.
 
-Syntax:
-
-**Shell form:**
-ENTRYPOINT command param1 param2
-
-**Exec form (preferred):**
-ENTRYPOINT ["executable", "param1", "param2"]
-
-Example:
-Dockerfile
-
-```
-FROM ubuntu:18.04
-ENTRYPOINT ["ping", "-c", "4"]
+### **Syntax:**
+```dockerfile
+ENTRYPOINT ["executable", "param1", "param2"]  # (exec form, preferred)
+ENTRYPOINT command param1 param2               # (shell form)
 ```
 
-In this example, the container will always execute ping -c 4 when started
+### **Key Points:**
+1. **Purpose:** Defines the main process of the container.
+2. **Overriding:** Difficult to override (requires `--entrypoint` in `docker run`).
+3. **Combination with `CMD`:** If both `ENTRYPOINT` and `CMD` are present, `CMD` acts as default arguments to `ENTRYPOINT`.
+4. **Shell vs Exec Form:**
+   - **Exec form (recommended):** Runs directly without a shell (better signal handling).
+   - **Shell form:** Runs inside `/bin/sh -c` (allows shell features but may interfere with signals).
+
+### **Example:**
+```dockerfile
+FROM alpine
+ENTRYPOINT ["echo", "Hello"]
+CMD ["Docker"]  # Acts as default argument
+```
+- Running `docker run <image>` outputs: `Hello Docker`
+- Running `docker run <image> World` outputs: `Hello World` (overrides `CMD` but not `ENTRYPOINT`)
+
+### **Override Entrypoint at Runtime:**
+```bash
+docker run --entrypoint /bin/bash <image>  # Overrides ENTRYPOINT
+```
+
+### **Best Practices:**
+- Use **exec form** for better signal handling.
+- Prefer `ENTRYPOINT` for defining the main command and `CMD` for default arguments.
+- Avoid mixing `ENTRYPOINT` (shell form) with `CMD` unless necessary.
+
+Would you like a more detailed explanation or a specific use case? 😊
 
 
 **🧾 CMD: Providing Default Arguments**
@@ -326,7 +343,63 @@ While similar, `COPY` is preferred over `ADD` for most use cases because:
 - `COPY` is more transparent (just copies files)
 - `ADD` has additional features like URL support and automatic tar extraction, which can lead to unexpected behavior
 
-Would you like more specific examples or explanations about any particular aspect of the `COPY` instruction?
+
+# ENV Instruction in Dockerfile
+
+The `ENV` instruction in a Dockerfile is used to set environment variables that will be available to containers created from the image. These variables can be accessed during the build process and by running containers.
+
+## Basic Syntax
+
+```dockerfile
+ENV <key>=<value> ...
+```
+
+## Examples
+
+1. **Setting a single variable**:
+   ```dockerfile
+   ENV MY_NAME="John Doe"
+   ```
+
+2. **Setting multiple variables in one line**:
+   ```dockerfile
+   ENV MY_NAME="John Doe" MY_AGE=30
+   ```
+
+3. **Using variables in subsequent instructions**:
+   ```dockerfile
+   ENV APP_DIR=/usr/src/app
+   WORKDIR $APP_DIR
+   ```
+
+## Best Practices
+
+1. **Group related environment variables** together for better readability
+2. **Place ENV instructions** near the top of the Dockerfile if they're used throughout the build
+3. **Consider using .env files** with `docker run --env-file` for sensitive data instead of hardcoding in Dockerfile
+
+## Important Notes
+
+- Environment variables set with `ENV` persist in the final image
+- They can be overridden at runtime using `docker run -e` flag
+- Variables can be referenced in other Dockerfile instructions using `$variable_name` or `${variable_name}` syntax
+
+## Example Dockerfile
+
+```dockerfile
+FROM alpine:latest
+
+ENV APP_VERSION=1.0.0 \
+    NODE_ENV=production \
+    PORT=8080
+
+RUN echo "Building version ${APP_VERSION} for ${NODE_ENV} environment" && \
+    echo "Server will listen on port ${PORT}"
+
+CMD ["sh", "-c", "echo 'App is running on port $PORT'"]
+```
+
+
 
 
 
