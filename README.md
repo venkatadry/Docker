@@ -28,9 +28,12 @@ shared kernel.
 7. Docker Architecture and Components
 Docker has three core components:
 
-● Docker Engine (which includes the daemon)
-● Docker CLI (command-line interface)
-● Docker Objects (images, containers, volumes, networks).
+      ● Docker Engine (which includes the daemon)
+
+      ● Docker CLI (command-line interface)
+
+       ● Docker Objects (images, containers, volumes, networks).
+
 
 It also includes Docker Compose, Docker Hub, and the Docker Registry.
 The client-server architecture allows Docker clients to communicate with
@@ -39,29 +42,24 @@ the Docker daemon to build, run, and manage containers.
 
 5. Understanding Docker Daemon, CLI, and Docker Client
    
-● Docker Daemon (dockerd): Listens for Docker API requests and manages
-objects.
-● Docker Client (docker): The interface users interact with; it sends
-commands to the daemon.
-● Docker API: REST API used by clients and tools.
-Together, these components let developers efficiently build and run
-applications inside containers.
+   ● Docker Daemon (dockerd): Listens for Docker API requests and manages objects.
+   ● Docker Client (docker): The interface users interact with; it sends commands to the daemon.
+   ● Docker API: REST API used by clients and tools.
+     Together, these components let developers efficiently build and run applications inside containers.
 
 
 7. Docker Engine and How It Works
 Docker Engine is the runtime that powers Docker. It handles:
 
-● Image building and layer management
-● Container lifecycle (create, start, stop, destroy)
-● Volume and network management
-Docker Engine runs as a background service and interacts via the Docker
-API.
+   ● Image building and layer management
+   ● Container lifecycle (create, start, stop, destroy)
+   ● Volume and network management
+Docker Engine runs as a background service and interacts via the Docker API.
 
 9. Installing Docker on Linux, Windows, and macOS
     
-● Linux: Install via package manager (apt, yum). Configure post-install
-access for non-root users.
-● Windows/macOS: Use Docker Desktop. It includes Docker Engine, CLI,
+    ● Linux: Install via package manager (apt, yum). Configure post-install access for non-root users.
+     ● Windows/macOS: Use Docker Desktop. It includes Docker Engine, CLI,
 Docker Compose, and Kubernetes.
 Docker Desktop also provides a GUI dashboard for managing containers
 and images.
