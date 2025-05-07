@@ -95,12 +95,11 @@ ENTRYPOINT command param1 param2
 **Exec form (preferred):**
 ENTRYPOINT ["executable", "param1", "param2"]
 
-
 Example:
-
 Dockerfile
 
-```FROM ubuntu:18.04
+```
+FROM ubuntu:18.04
 ENTRYPOINT ["ping", "-c", "4"]
 ```
 
