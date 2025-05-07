@@ -28,7 +28,6 @@ shared kernel.
 7. Docker Architecture and Components
 Docker has three core components:
 ● Docker Engine (which includes the daemon)
-
 ● Docker CLI (command-line interface)
 ● Docker Objects (images, containers, volumes, networks).
 It also includes Docker Compose, Docker Hub, and the Docker Registry.
