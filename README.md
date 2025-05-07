@@ -84,7 +84,7 @@ RUN npm install
 
 
 
-***🧭 ENTRYPOINT: Defining the Executable ***
+***🧭 ENTRYPOINT: Defining the Executable***
 The ENTRYPOINT instruction specifies the command that will always be executed when the container starts. It is ideal for containers that should run a specific application or script.
 
 Syntax:
@@ -105,7 +105,7 @@ ENTRYPOINT ["ping", "-c", "4"]
 In this example, the container will always execute ping -c 4 when started
 
 
-**🧾 CMD: Providing Default Arguments **
+**🧾 CMD: Providing Default Arguments**
 The CMD instruction provides default arguments for the ENTRYPOINT command. If arguments are provided when running the container, they will override the CMD values.
 
 Syntax:
