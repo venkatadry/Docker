@@ -27,15 +27,18 @@ shared kernel.
 
 7. Docker Architecture and Components
 Docker has three core components:
+
 ● Docker Engine (which includes the daemon)
 ● Docker CLI (command-line interface)
 ● Docker Objects (images, containers, volumes, networks).
+
 It also includes Docker Compose, Docker Hub, and the Docker Registry.
 The client-server architecture allows Docker clients to communicate with
 the Docker daemon to build, run, and manage containers.
 
 
 5. Understanding Docker Daemon, CLI, and Docker Client
+   
 ● Docker Daemon (dockerd): Listens for Docker API requests and manages
 objects.
 ● Docker Client (docker): The interface users interact with; it sends
@@ -47,13 +50,15 @@ applications inside containers.
 
 7. Docker Engine and How It Works
 Docker Engine is the runtime that powers Docker. It handles:
+
 ● Image building and layer management
 ● Container lifecycle (create, start, stop, destroy)
 ● Volume and network management
 Docker Engine runs as a background service and interacts via the Docker
 API.
 
-8. Installing Docker on Linux, Windows, and macOS
+9. Installing Docker on Linux, Windows, and macOS
+    
 ● Linux: Install via package manager (apt, yum). Configure post-install
 access for non-root users.
 ● Windows/macOS: Use Docker Desktop. It includes Docker Engine, CLI,
@@ -62,8 +67,9 @@ Docker Desktop also provides a GUI dashboard for managing containers
 and images.
 
 
-10. Basic Docker Commands Every Developer Should Know
+11. Basic Docker Commands Every Developer Should Know
 Key commands include:
+
 ● docker version, docker info – show system details
 ● docker ps, docker images – list containers/images
 ● docker run, docker exec – start a container or run a command
@@ -71,13 +77,13 @@ Key commands include:
 ● docker stop, docker rm, docker rmi – container/image cleanup
 
 
-12. Working with Docker Images
+13. Working with Docker Images
 Docker images are read-only templates used to create containers. They are built
 using layers, each representing an instruction in a Dockerfile. Images can be
 pulled from Docker Hub or a private registry. The image contains everything: the
 app, dependencies, system libraries, and environment configurations.
 
-13. Dockerfile – Purpose and Structure
+14. Dockerfile – Purpose and Structure
 A Dockerfile is a plain-text file with a set of instructions to build an image. Key
 instructions include:
 ● FROM (base image)
