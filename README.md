@@ -169,6 +169,30 @@ Copies the `package.json` and `package-lock.json` files from your local machine 
 
 Installs the dependencies specified in `package.json` using npm. This command runs inside the container and ensures that all necessary packages are available for your application.([Medium][2])
 
+Let me break down these two Dockerfile instructions for you:
+
+1. `RUN unzip install.zip /opt/install`
+   - `RUN` is a Dockerfile instruction that executes a command during the image build process
+   - `unzip install.zip /opt/install` is the command being run, which:
+     - Unzips the file `install.zip`
+     - Extracts its contents to the directory `/opt/install`
+   - This assumes there's an `install.zip` file in the current build context
+
+2. `RUN echo hello`
+   - Another `RUN` instruction
+   - `echo hello` simply outputs the string "hello" during the build process
+   - This output will be visible in the build logs but won't affect the final image
+
+Important notes:
+- Each `RUN` instruction creates a new layer in the Docker image
+- These commands run during image build, not when the container starts
+- The unzip command requires that the zip file exists in the build context and that the unzip utility is installed in the image
+- For better practices, these might be combined into a single `RUN` instruction to reduce layers:
+  ```
+  RUN unzip install.zip /opt/install && \
+      echo hello
+  ```
+
 ### 5. `COPY . .`
 
 Copies the rest of your application code into the container's `/app` directory. This step is performed after installing dependencies to take advantage of Docker's caching mechanism. If your application code changes frequently, this approach minimizes the number of layers that need to be rebuilt. ([Medium][2], [This Dot Labs][5])
